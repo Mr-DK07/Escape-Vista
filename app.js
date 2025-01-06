@@ -29,7 +29,7 @@ async function main() {
 }
 
 app.get("/", (req, res) => {
-  res.send("root working fine");
+  res.send("root working fine.");
 });
 
 //Index route
