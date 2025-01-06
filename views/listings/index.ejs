@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        <h3 class="ms-4 text-danger mb-4 mt-2">The Ultimate Travel Destination Booking Website</h3>
+        <div class="row">
+            <% for(let listing of allListings) { %>
+                <div class="card cols-md-3 mx-auto" style="width: 20rem;">
+                    <a class="show-links" href="/listings/<%= listing._id %>">
+                        <img src="<%= listing.image %>" class="list-card-img list-card-img-top" alt="img..">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                            <p class="card-title"><b>
+                                    <%= listing.title %>
+                                </b></p>
+                            <p class="card-price">&#8377;<%= listing.price.toLocaleString("en-IN") %> /night</p>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+        </div>
+    </body>
