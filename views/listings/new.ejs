@@ -9,33 +9,39 @@
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="listing[title]" id="title"
                             placeholder="Enter title" required>
+                            <div class="invalid-feedback"> Enter a short title.</div>
                     </div>
                     <div>
                         <label for="image" class="form-label">Image</label>
                         <input type="text" class="form-control" name="listing[image]" id="image"
                             placeholder="Enter image url" required>
+                            <div class="invalid-feedback"> Enter a image URL.</div>
                     </div>
                     <div>
                         <label for="description" class="form-label">Description</label>
                         <textarea type="text" class="form-control" name="listing[description]" id="description"
                             placeholder="Enter description" required></textarea>
+                            <div class="invalid-feedback"> Enter description.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="price" class="form-label">Price</label>
                             <input type="number" class="form-control" name="listing[price]" id="price"
                                 placeholder="&#8377;" required>
+                                <div class="invalid-feedback"> Enter valid price.</div>
                         </div>
                         <div class="col-md-8">
                             <label for="country" class="form-label">Country</label>
                             <input type="text" class="form-control" name="listing[country]" id="country"
                                 placeholder="Enter country name" required>
+                                <div class="invalid-feedback"> Enter country name.</div>
                         </div>
                     </div>
                     <div>
                         <label for="location" class="form-label">Location</label>
                         <input type="text" class="form-control" name="listing[location]" id="location"
                             placeholder="Enter location" required>
+                            <div class="invalid-feedback"> Enter location.</div>
                     </div>
                     <button class="btn mt-3">Add</button>
                 </form>

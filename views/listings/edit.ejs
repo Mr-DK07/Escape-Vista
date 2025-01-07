@@ -8,30 +8,36 @@
                     <div>
                         <label class="form-label mt-3 mb-0" for="title">Title</label>
                         <input type="text" class="form-control" name="listing[title]" id="title" value="<%= listing.title %>" required>
+                        <div class="invalid-feedback"> Enter a short title.</div>
                     </div>
                     <div>
                         <label class="form-label mt-3 mb-0" for="image">Image</label>
                         <input type="text" class="form-control" name="listing[image]" id="image" value="<%= listing.image %>" required>
+                        <div class="invalid-feedback"> Enter a valid image URL.</div>
                     </div>
                     <div>
                         <label class="form-label mt-3 mb-0" for="description">Description</label>
                         <textarea type="text" class="form-control" name="listing[description]" id="description"
                             required><%= listing.description %></textarea>
+                            <div class="invalid-feedback"> Enter description.</div>
                     </div>
                     <div class="row">
                     <div class="col-md-4">
                         <label class="form-label mt-3 mb-0" for="price">Price</label>
                         <input type="number" class="form-control" name="listing[price]" id="price" value="<%= listing.price %>" required>
+                        <div class="invalid-feedback"> Enter valid price.</div>
                     </div>
                     <div class="col-md-8">
                         <label class="form-label mt-3 mb-0" for="country">Country</label>
                         <input type="text" class="form-control" name="listing[country]" id="country" value="<%= listing.country %>" required>
+                        <div class="invalid-feedback"> Enter country name.</div>
                     </div>
                 </div>
                     <div>
                         <label class="form-label mt-3 mb-0" for="location">Location</label>
                         <input type="text" class="form-control" name="listing[location]" id="location" value="<%= listing.location %>"
                             required>
+                            <div class="invalid-feedback"> Enter location.</div> 
                     </div>
                     
                     <button class="btn mt-3">Update</button>

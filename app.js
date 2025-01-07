@@ -5,6 +5,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const Listing = require("./models/listing");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync");
+const ExpressError = require("./utils/ExpressError");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -33,10 +35,13 @@ app.get("/", (req, res) => {
 });
 
 //Index route
-app.get("/listings", async (req, res) => {
-  const allListings = await Listing.find();
-  res.render("./listings/index.ejs", { allListings });
-});
+app.get(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find();
+    res.render("./listings/index.ejs", { allListings });
+  })
+);
 
 // New route
 app.get("/listings/new", (req, res) => {
@@ -44,61 +49,78 @@ app.get("/listings/new", (req, res) => {
 });
 
 //Create route
-app.post("/listings", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listings");
-  console.log(newListing);
-});
+app.post(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    if (!req.body.listing) {
+      throw new ExpressError(400, "Send valid data.");
+    }
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+    console.log(newListing);
+  })
+);
 
 // Show route
-app.get("/listings/:id", async (req, res) => {
-  const { id } = req.params;
-  const listing = await Listing.findById(id);
-  res.render("./listings/show.ejs", { listing });
-});
+app.get(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    res.render("./listings/show.ejs", { listing });
+  })
+);
 
 //Edit route
-app.get("/listings/:id/edit", async (req, res) => {
-  const { id } = req.params;
-  const listing = await Listing.findById(id);
-  res.render("./listings/edit.ejs", { listing });
-});
+app.get(
+  "/listings/:id/edit",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    res.render("./listings/edit.ejs", { listing });
+  })
+);
 
 //Update route
-app.put("/listings/:id", async (req, res) => {
-  const { id } = req.params;
-  const listing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing },
-    { new: true }
-  );
-  res.redirect(`/listings/${listing._id}`);
-});
+app.put(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    if (!req.body.listing) {
+      throw new ExpressError(400, "Send valid data.");
+    }
+    const { id } = req.params;
+    const listing = await Listing.findByIdAndUpdate(
+      id,
+      { ...req.body.listing },
+      { new: true }
+    );
+    res.redirect(`/listings/${listing._id}`);
+  })
+);
 
 //Delete route
-app.delete("/listings/:id", async (req, res) => {
-  const { id } = req.params;
-  const deletedListing = await Listing.findByIdAndDelete(id);
-  console.log(deletedListing);
-  res.redirect("/listings");
+app.delete(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const deletedListing = await Listing.findByIdAndDelete(id);
+    console.log(deletedListing);
+    res.redirect("/listings");
+  })
+);
+
+// Page not found
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something went wrong!" } = err;
+  res.status(statusCode).render("error.ejs", {err});
+  // res.status(statusCode).send(message);
 });
 
 app.listen(8080, () => {
   console.log("Server is listening on port 8080");
 });
-
-// app.get("/testListings", async (req, res) => {
-//   let sampleListing = new Listing({
-//     title: "Resort",
-//     image:
-//       "https://media.istockphoto.com/id/119926339/photo/resort-swimming-pool.jpg?s=612x612&w=0&k=20&c=9QtwJC2boq3GFHaeDsKytF4-CavYKQuy1jBD2IRfYKc=",
-//     description: "A beautiful resort",
-//     price: 1000,
-//     location: "Vista",
-//     country: "USA",
-//   });
-//   await sampleListing.save();
-//   console.log("saved");
-//   res.send("saved successfully");
-// });
