@@ -1,24 +1,25 @@
 <% layout("/layouts/boilerplate") %>
 
     <body>
-
-
         <div class="row">
             <div class="col-8 offset-3">
-                <h3>Listing Details</h3>
+                <h3>
+                    <%= listing.title %>
+                </h3>
             </div>
+        </div>
+        <div class="row">
             <div class="card col-6 offset-3">
                 <img src="<%= listing.image %>" class="show-img card-img-top" alt="img..">
-                <div class="show-card-body mt-3">
-                    <h5>
-                        <b><%= listing.title %></b>
-                    </h5>
+                <div class="show-card-body my-3">
                     <p class="card-text">
                         <%= listing.description %>
                     </p>
-                    <p>&#8377;<%= listing.price.toLocaleString("en-IN") %>
+                    <p class="my-2"><b>&#8377; </b>
+                        <%= listing.price.toLocaleString("en-IN") %> /night
                     </p>
                     <p>
+                        <i class="fa-solid fa-location-dot"></i>
                         <%= listing.location %>
                     </p>
                     <p>
@@ -34,9 +35,27 @@
                     </form>
                 </div>
             </div>
-
-
         </div>
+        <hr>
 
+        <!-- review form -->
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h4>Leave a Review.</h4>
+                <form action="/listings/<%= listing.id %>/reviews" method="POST">
+                    <div>
+                        <label class="form-label" for="rating">Rating : </label>
+                        <input type="range" min="1" max="5" id="rating" name="review[rating]">
+                    </div>
+                    <div>
+                        <label class="form-label" for="comment">Comment</label>
+                        <textarea class="form-control" rows="4" id="comment" name="review[comment]"></textarea>
+                    </div>
+                    <button class="btn btn-danger mt-3">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
 
     </body>

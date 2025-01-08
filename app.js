@@ -7,6 +7,8 @@ const Listing = require("./models/listing");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
+const { listingSchema } = require("./schema.js");
+const Review = require("./models/review");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -34,6 +36,17 @@ app.get("/", (req, res) => {
   res.send("root working fine.");
 });
 
+// validating listing Schema
+const validateListing = (req, res, next) => {
+  let { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+
 //Index route
 app.get(
   "/listings",
@@ -51,10 +64,8 @@ app.get("/listings/new", (req, res) => {
 //Create route
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res) => {
-    if (!req.body.listing) {
-      throw new ExpressError(400, "Send valid data.");
-    }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -85,10 +96,8 @@ app.get(
 //Update route
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
-    if (!req.body.listing) {
-      throw new ExpressError(400, "Send valid data.");
-    }
     const { id } = req.params;
     const listing = await Listing.findByIdAndUpdate(
       id,
@@ -99,7 +108,7 @@ app.put(
   })
 );
 
-//Delete route
+//Delete listing route
 app.delete(
   "/listings/:id",
   wrapAsync(async (req, res) => {
@@ -110,6 +119,20 @@ app.delete(
   })
 );
 
+//Review post route
+app.post("/listings/:id/reviews", async (req, res) => {
+  let listing = await Listing.findById(req.params.id);
+  let newReview = new Review(req.body.review);
+
+  listing.reviews.push(newReview);
+
+  await newReview.save();
+  await listing.save();
+
+  console.log("new review saved");
+  res.redirect(`/listings/${listing.id}`);
+});
+
 // Page not found
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
@@ -117,7 +140,7 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
-  res.status(statusCode).render("error.ejs", {err});
+  res.status(statusCode).render("error.ejs", { err });
   // res.status(statusCode).send(message);
 });
 
