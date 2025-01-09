@@ -41,7 +41,7 @@
         <!-- review form -->
         <div class="row">
             <div class="col-6 offset-3">
-                <h4>Leave a Review.</h4>
+                <h5><b><u>Leave a Review</u></b></h5>
                 <form action="/listings/<%= listing.id %>/reviews" method="POST" class="needs-validation" novalidate>
                     <div>
                         <label class="form-label" for="rating">Rating : </label>
@@ -71,17 +71,17 @@
                                     </h6>
                                     <div class="edit-delete d-flex justify-content-between">
                                         <form class="edit-review" method="POST" action="#">
-                                            <button class="btn border p-1 me-1"><i class="fa-solid fa-pencil"></i></button>
+                                            <button class="btn border-success px-1 py-0 me-1 "><i
+                                                    class="fa-solid fa-pencil fa-sm"></i></button>
                                         </form>
                                         <form class="delete-review" method="POST"
                                             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                                            <button class="btn border p-1"><i class="fa-solid fa-trash fa"
-                                                    style="color: #030000;"></i></button>
+                                            <button class="btn border-success px-1 py-0"><i class="fa-solid fa-trash fa-sm"></i></button>
                                         </form>
                                     </div>
                                 </div>
                                 <p class="card-text mb-1">
-                                    <%= review.rating %><i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                   <b> <%= review.rating %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i></b> 
                                 </p>
                                 <p class="card-text">
                                     <%= review.comment %>
