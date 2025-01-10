@@ -3,13 +3,15 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
-// const Listing = require("./models/listing");
 const ejsMate = require("ejs-mate");
-// const wrapAsync = require("./utils/wrapAsync");
-const ExpressError = require("./utils/ExpressError");
-// const { listingSchema, reviewSchema } = require("./schema.js");
 const session = require("express-session");
+const flash = require("connect-flash");
 
+// const Listing = require("./models/listing");
+// const wrapAsync = require("./utils/wrapAsync");
+// const { listingSchema, reviewSchema } = require("./schema.js");
+
+const ExpressError = require("./utils/ExpressError");
 const Review = require("./models/review");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -47,10 +49,17 @@ const sessionOptions = {
   },
 };
 
-app.use(session(sessionOptions));
-
 app.get("/", (req, res) => {
   res.send("root working fine.");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
 });
 
 // listings routes
