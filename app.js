@@ -16,8 +16,9 @@ const LocalStrategy = require("passport-local"); // for use authentication strat
 const ExpressError = require("./utils/ExpressError");
 const Review = require("./models/review");
 const User = require("./models/user.js");
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -73,10 +74,13 @@ app.use((req, res, next) => {
 });
 
 // listings routes
-app.use("/listings", listings);
+app.use("/listings", listingRouter);
 
 // Listing review routes
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings/:id/reviews", reviewRouter);
+
+// User routes
+app.use("/", userRouter);
 
 // Page not found
 app.all("*", (req, res, next) => {
