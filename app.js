@@ -8,6 +8,8 @@ const ejsMate = require("ejs-mate");
 // const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
 // const { listingSchema, reviewSchema } = require("./schema.js");
+const session = require("express-session");
+
 const Review = require("./models/review");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -33,6 +35,19 @@ main()
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
+
+const sessionOptions = {
+  secret: "secretsupercode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
+
+app.use(session(sessionOptions));
 
 app.get("/", (req, res) => {
   res.send("root working fine.");
