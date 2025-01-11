@@ -12,6 +12,9 @@
             <div class="card listing-card col-6 offset-3">
                 <img src="<%= listing.image %>" class="show-img card-img-top" alt="img..">
                 <div class="show-card-body my-3">
+                    <p class="mb-2">Owned by: <b>
+                            <%= listing.owner.username %>
+                        </b></p>
                     <p class="card-text">
                         <%= listing.description %>
                     </p>
@@ -26,14 +29,18 @@
                         <%= listing.country %>
                     </p>
                 </div>
-                <div class="edit-delete-btn mt-4">
-                    <a href="/listings/<%= listing._id %>/edit">
-                        <button class="btn btn-danger px-4">Edit</button>
-                    </a>
-                    <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-                        <button class="btn btn-dark ms-5 px-3">Delete</button>
-                    </form>
-                </div>
+
+                <% if (currUser && currUser._id.equals(listing.owner)) { %>
+                    <div class="edit-delete-btn mt-4">
+                        <a href="/listings/<%= listing._id %>/edit">
+                            <button class="btn btn-danger px-4">Edit</button>
+                        </a>
+                        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                            <button class="btn btn-dark ms-5 px-3">Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+
             </div>
         </div>
         <hr>
@@ -76,12 +83,15 @@
                                         </form>
                                         <form class="delete-review" method="POST"
                                             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                                            <button class="btn border-success px-1 py-0"><i class="fa-solid fa-trash fa-sm"></i></button>
+                                            <button class="btn border-success px-1 py-0"><i
+                                                    class="fa-solid fa-trash fa-sm"></i></button>
                                         </form>
                                     </div>
                                 </div>
                                 <p class="card-text mb-1">
-                                   <b> <%= review.rating %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i></b> 
+                                    <b>
+                                        <%= review.rating %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    </b>
                                 </p>
                                 <p class="card-text">
                                     <%= review.comment %>

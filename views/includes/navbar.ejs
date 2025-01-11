@@ -13,11 +13,11 @@
         <a class="nav-link" href="/listings/new">New Listings</a>
       </div>
       <div class="navbar-nav ms-auto">
-        <% if (!req.user) { %>
+        <% if (!currUser) { %>
           <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
           <a class="nav-link" href="/login">Login</a>
         <% } %>
-        <% if (req.user) { %>
+        <% if (currUser) { %>
           <a class="nav-link" href="/logout">Log Out</a>
         <% } %>
       </div>
