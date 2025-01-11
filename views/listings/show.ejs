@@ -30,7 +30,7 @@
                     </p>
                 </div>
 
-                <% if (currUser && currUser._id.equals(listing.owner)) { %>
+                <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
                     <div class="edit-delete-btn mt-4">
                         <a href="/listings/<%= listing._id %>/edit">
                             <button class="btn btn-danger px-4">Edit</button>
@@ -46,6 +46,9 @@
         <hr>
 
         <!-- review form -->
+         <% if (currUser) { %>
+          
+        
         <div class="row">
             <div class="col-6 offset-3">
                 <h5><b><u>Leave a Review</u></b></h5>
@@ -65,6 +68,7 @@
                 </form>
             </div>
         </div>
+        <% } %>
         <div class="row mt-5 ">
             <div class="col-8  offset-3">
                 <p><b><u>All Reviews</u></b></p>
@@ -74,7 +78,7 @@
                             <div class="card-body">
                                 <div class="mt-2 d-flex justify-content-between">
                                     <h6 class="card-title ">
-                                        <b>Jane Doe</b>
+                                        <b><%= review.author.username %></b>
                                     </h6>
                                     <div class="edit-delete d-flex justify-content-between">
                                         <form class="edit-review" method="POST" action="#">
