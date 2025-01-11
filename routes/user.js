@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const wrapAsync = require("../utils/wrapAsync");
-const ExpressError = require("../utils/ExpressError");
+// const ExpressError = require("../utils/ExpressError");
 const User = require("../models/user.js");
 
 // Sign Up page
@@ -45,5 +45,16 @@ router.post(
     res.redirect("/listings");
   }
 );
+
+// Logout route
+router.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.flash("success", "You are logged out!");
+    res.redirect("/listings");
+  });
+});
 
 module.exports = router;
