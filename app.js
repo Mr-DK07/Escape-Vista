@@ -53,9 +53,7 @@ const sessionOptions = {
   },
 };
 
-app.get("/", (req, res) => {
-  res.send("root working fine.");
-});
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -72,6 +70,10 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
+});
+
+app.get("/", (req, res) => {
+  res.render("index.ejs");
 });
 
 // listings routes
