@@ -4,18 +4,24 @@
         <h5 class="offset-2"><b>Create New Listing-</b></h5>
         <div class="row mb-4">
             <div class="col-8 offset-2">
-                <form class="new-form needs-validation" method="POST" action="/listings" novalidate>
+                <form class="new-form needs-validation" enctype="multipart/form-data" method="POST" action="/listings" novalidate>
                     <div>
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="listing[title]" id="title"
                             placeholder="Enter title" required>
                             <div class="invalid-feedback"> Enter a short title.</div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <label for="image" class="form-label">Image</label>
                         <input type="text" class="form-control" name="listing[image]" id="image"
                             placeholder="Enter image url" required>
                             <div class="invalid-feedback"> Enter a image URL.</div>
+                    </div> -->
+                    <div>
+                        <label for="image" class="form-label">Upload image</label>
+                        <input type="file" class="form-control" name="listing[image]" id="image"
+                             required>
+                            <div class="invalid-feedback"> Upload image!</div>
                     </div>
                     <div>
                         <label for="description" class="form-label">Description</label>
