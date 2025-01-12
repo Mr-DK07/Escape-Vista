@@ -72,6 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//index route
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
