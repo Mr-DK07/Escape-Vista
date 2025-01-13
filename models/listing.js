@@ -8,13 +8,8 @@ const listingSchema = new Schema({
     required: true,
   },
   image: {
-    type: String,
-    set: (v) =>
-      v === " "
-        ? "https://cdn.pixabay.com/photo/2015/09/07/19/12/hotel-928937_1280.jpg"
-        : v,
-    default:
-      "https://cdn.pixabay.com/photo/2015/09/07/19/12/hotel-928937_1280.jpg",
+    url: String,
+    filename: String,
   },
   description: {
     type: String,
@@ -42,6 +37,35 @@ const listingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
+  category: {
+		type: String,
+		enum: [
+			"Trending",
+			"Iconic City",
+			"Mountain",
+			"Castle",
+			"Pool",
+			"Camping",
+			"Farm",
+			"Arctic",
+			"Spa",
+			"Adventure",
+			"Dining",
+			"Meeting",
+		],
+		required: true,
+	},
 });
 
 listingSchema.post("findOneAndDelete", async (listing) => {

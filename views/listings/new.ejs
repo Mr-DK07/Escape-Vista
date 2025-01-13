@@ -4,50 +4,65 @@
         <h5 class="offset-2"><b>Create New Listing-</b></h5>
         <div class="row mb-4">
             <div class="col-8 offset-2">
-                <form class="new-form needs-validation" enctype="multipart/form-data" method="POST" action="/listings" novalidate>
+                <form class="new-form needs-validation" enctype="multipart/form-data" method="POST" action="/listings"
+                    novalidate>
                     <div>
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="listing[title]" id="title"
                             placeholder="Enter title" required>
-                            <div class="invalid-feedback"> Enter a short title.</div>
+                        <div class="invalid-feedback"> Enter a short title.</div>
                     </div>
-                    <!-- <div>
-                        <label for="image" class="form-label">Image</label>
-                        <input type="text" class="form-control" name="listing[image]" id="image"
-                            placeholder="Enter image url" required>
-                            <div class="invalid-feedback"> Enter a image URL.</div>
-                    </div> -->
                     <div>
                         <label for="image" class="form-label">Upload image</label>
-                        <input type="file" class="form-control" name="listing[image]" id="image"
-                             required>
-                            <div class="invalid-feedback"> Upload image!</div>
+                        <input type="file" class="form-control" name="listing[image]" id="image" required>
+                        <div class="invalid-feedback"> Upload image!</div>
                     </div>
                     <div>
                         <label for="description" class="form-label">Description</label>
                         <textarea type="text" class="form-control" name="listing[description]" id="description"
                             placeholder="Enter description" required></textarea>
-                            <div class="invalid-feedback"> Enter description.</div>
+                        <div class="invalid-feedback"> Enter description.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="price" class="form-label">Price</label>
                             <input type="number" class="form-control" name="listing[price]" id="price"
                                 placeholder="&#8377;" required>
-                                <div class="invalid-feedback"> Enter valid price.</div>
+                            <div class="invalid-feedback"> Enter valid price.</div>
                         </div>
                         <div class="col-md-8">
                             <label for="country" class="form-label">Country</label>
                             <input type="text" class="form-control" name="listing[country]" id="country"
                                 placeholder="Enter country name" required>
-                                <div class="invalid-feedback"> Enter country name.</div>
+                            <div class="invalid-feedback"> Enter country name.</div>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="category" id="category" class="form-label">
+                            Category
+                        </label>
+                        <select class="form-control" id="category" name="listing[category]" required>
+                            <option value="" disabled selected>Select category:</option>
+                            <option value="Trending">Trending</option>
+                            <option value="Iconic City">Iconic City</option>
+                            <option value="Mountain">Mountain</option>
+                            <option value="Castle">Castle</option>
+                            <option value="Pool">Pool</option>
+                            <option value="Camping">Camping</option>
+                            <option value="Farm">Farm</option>
+                            <option value="Arctic">Arctic</option>
+                            <option value="Spa">Spa</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Dining">Dining</option>
+                            <option value="Meeting">Meeting</option>
+                        </select>
+                        <div class="invalid-feedback">Select any one.</div>
                     </div>
                     <div>
                         <label for="location" class="form-label">Location</label>
                         <input type="text" class="form-control" name="listing[location]" id="location"
                             placeholder="Enter location" required>
-                            <div class="invalid-feedback"> Enter location.</div>
+                        <div class="invalid-feedback"> Enter location.</div>
                     </div>
                     <button class="btn mt-3">Add</button>
                 </form>

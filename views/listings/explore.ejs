@@ -1,18 +1,98 @@
 <% layout("/layouts/boilerplate") %>
-
     <body>
-        <h3 class="ms-4 text-danger mb-4 mt-2">The Ultimate Travel Destination Booking Website</h3>
+        <div id="filters">
+            <div class="filter">
+                <a class="icon" href="/listings/category/Trending"></a>
+                <div><i class="fa-solid fa-fire-flame-curved"></i></div>
+                Trending
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Iconic City">
+                    <div><i class="fa-solid fa-city"></i></div>
+                    Iconic City
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Mountain">
+                    <div><i class="fa-solid fa-mountain-city"></i></div>
+                    Mountain
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Castle">
+                    <div><i class="fa-brands fa-fort-awesome"></i></div>
+                    Castle
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Pool">
+                    <div><i class="fa-solid fa-umbrella-beach"></i></div>
+                    Pool
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Camping">
+                    <div><i class="fa-solid fa-campground"></i></div>
+                    Camping
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Farm">
+                    <div><i class="fa-solid fa-wheat-awn"></i></div>
+                    Farm
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Arctic">
+                    <div><i class="fa-solid fa-snowflake"></i></div>
+                    Arctic
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Spa">
+                    <div><i class="fa-solid fa-spa"></i></div>
+                    Spa
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Adventure">
+                    <div><i class="fa-solid fa-hiking"></i></div>
+                    Adventure
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Dining">
+                    <div><i class="fa-solid fa-utensils"></i></div>
+                    Dining
+                </a>
+            </div>
+            <div class="filter">
+                <a class="icon" href="/listings/category/Meeting">
+                    <div><i class="fa-solid fa-handshake"></i></div>
+                    Meeting
+                </a>
+            </div>
+            <div class="filter tax-toggle">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+                </div>
+            </div>
+        </div>
+
+        <h3 class=" text-danger mb-4 mt-2">The Ultimate Travel Destination Booking Website</h3>
         <div class="row">
             <% for(let listing of allListings) { %>
-                <div class="card listing-card cols-md-3 mx-auto" style="width: 20rem;">
+                <div class="card listing-card cols-md-3 mx-auto" style="width: 23rem;">
                     <a class="show-links" href="/listings/<%= listing._id %>">
-                        <img src="<%= listing.image %>" class="list-card-img list-card-img-top" alt="img..">
+                        <img src="<%= listing.image.url %>" class="list-card-img list-card-img-top" alt="img..">
                         <div class="card-img-overlay"></div>
                         <div class="card-body">
                             <p class="card-title"><b>
                                     <%= listing.title %>
                                 </b></p>
-                            <p class="card-price">&#8377;<%= listing.price.toLocaleString("en-IN") %> /night</p>
+                            <p class="card-price">&#8377;<%= listing.price.toLocaleString("en-IN") %> /night <b class="tax-info">+ 18% GST</b></p>
                         </div>
                     </a>
                 </div>
