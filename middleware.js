@@ -1,7 +1,7 @@
-const ExpressError = require("./utils/ExpressError");
-const { listingSchema, reviewSchema } = require("./schema.js");
 const Listing = require("./models/listing");
 const Review = require("./models/review");
+const ExpressError = require("./utils/ExpressError");
+const { listingSchema, reviewSchema } = require("./schema.js");
 
 // validating listing Schema
 module.exports.validateListing = (req, res, next) => {

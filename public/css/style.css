@@ -36,7 +36,7 @@ body {
 }
 
 input::placeholder {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: sans-serif;
 }
 

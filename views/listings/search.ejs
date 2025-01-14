@@ -1,15 +1,14 @@
 <% layout("/layouts/boilerplate") %>
-<link rel="stylesheet" href="/css/style.css" />
 
 <div class="mt-3">
 	<!-- Display Flash Message -->
 	<% if (error) { %>
-	<div><%= error %></div>
+	<div>this is error: <%= error %></div>
 	<% } %>
 
 	<!-- Display Listings -->
 	<% if (listing.length === 0) { %>
-	<h3 style="font-family: Georgia, 'Times New Roman', Times, serif">
+	<h3>
 		<i> No listings found for your search criteria. </i>
 		<a href="/listings/new"><i>Vista your place</i></a> |
 		<a href="/listings"><i>Explore</i></a>
