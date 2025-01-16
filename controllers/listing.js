@@ -116,5 +116,5 @@ module.exports.searchListing = async (req, res) => {
   }
   const listing = await Listing.find(filter);
   res.render("listings/search.ejs", { listing, query });
-  req.flash("error", "Something went wrong. Please try again.");
+  req.flash("error", "Something went wrong. Please try again!");
 };
