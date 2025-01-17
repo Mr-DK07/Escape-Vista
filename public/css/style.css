@@ -13,7 +13,7 @@ body {
   height: 6rem;
   background: rgb(237, 234, 234);
 }
-.brand-name{
+.brand-name {
   font-size: 2rem;
   font-weight: 700;
   color: #9f5b5b;
@@ -96,6 +96,10 @@ input::placeholder {
   height: 20rem;
   object-fit: cover;
 }
+.listing-card:hover {
+  translate: 0 -3%;
+  transition: all 0.3s;
+}
 .listing-card-body {
   padding: 0 !important;
   margin: 0;
@@ -108,14 +112,14 @@ input::placeholder {
   color: #222222;
 }
 
-.card-img-overlay {
+/* .card-img-overlay {
   opacity: 0;
 }
 .card-img-overlay:hover {
   opacity: 0.3;
   background: white;
   transition-duration: 0.2s;
-}
+} */
 
 /* new listing */
 .new-form {
@@ -160,20 +164,19 @@ input::placeholder {
 }
 
 /* category page */
-.category-card{
-  border-radius:5px ;
-
-}
-.category-img{
+.category-card {
   border-radius: 5px;
 }
-.category-link{
+.category-img {
+  border-radius: 5px;
+}
+.category-link {
   text-decoration: none;
   color: black;
 }
-.category-card-body{
-margin: 0;
-padding: 0;
+.category-card-body {
+  margin: 0;
+  padding: 0;
 }
 
 /* Footer */

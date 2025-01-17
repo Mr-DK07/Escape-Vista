@@ -51,6 +51,7 @@ async function main() {
 }
 
 // Mongo session
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
