@@ -3,9 +3,9 @@
     <body>
         <div id="filters">
             <div class="filter">
-                <a class="icon" href="/listings/category/Trending"></a>
-                <div><i class="fa-solid fa-fire-flame-curved"></i></div>
-                Trending
+                <a class="icon" href="/listings/category/Trending">
+                    <div><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    Trending
                 </a>
             </div>
             <div class="filter">
@@ -89,7 +89,7 @@
                     <a class="show-links" href="/listings/<%= listing._id %>">
                         <img src="<%= listing.image.url %>" class="list-card-img list-card-img-top" alt="img..">
                         <div class="card-img-overlay"></div>
-                        <div class="card-body">
+                        <div class="listing-card-body">
                             <p class="card-title"><b>
                                     <%= listing.title %>
                                 </b></p>
@@ -100,18 +100,4 @@
                 </div>
                 <% } %>
         </div>
-        <script>
-            // Tax toggle
-            let taxSwitch = document.getElementById("flexSwitchCheckDefault");
-            taxSwitch.addEventListener("click", () => {
-                let taxInfo = document.getElementsByClassName("tax-info");
-                for (info of taxInfo) {
-                    if (info.style.display != "inline") {
-                        info.style.display = "inline";
-                    } else {
-                        info.style.display = "none";
-                    }
-                }
-            });
-        </script>
     </body>

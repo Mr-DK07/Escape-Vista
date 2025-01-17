@@ -10,12 +10,18 @@ body {
 
 /* navbar */
 .navbar {
-  height: 5rem;
-  background: rgb(155, 155, 155);
+  height: 6rem;
+  background: rgb(237, 234, 234);
+}
+.brand-name{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #9f5b5b;
 }
 .logo-icon {
   color: #fe424d;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 .nav-links {
   color: #222222 !important;
@@ -46,7 +52,6 @@ input::placeholder {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-
 .filter {
   text-align: center;
   margin-right: 1rem;
@@ -80,7 +85,7 @@ input::placeholder {
   margin-left: 2rem;
 }
 
-/* cards */
+/*listing cards */
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
@@ -91,11 +96,11 @@ input::placeholder {
   height: 20rem;
   object-fit: cover;
 }
-.card-body {
+.listing-card-body {
   padding: 0 !important;
   margin: 0;
 }
-.card-body p {
+.listing-card-body p {
   font-weight: 400 !important;
 }
 .show-links {
@@ -149,12 +154,27 @@ input::placeholder {
 .edit-delete-btn {
   display: flex;
 }
-
+/* Map */
 #map {
   height: 250px;
 }
 
-/* #more {display: none;} */
+/* category page */
+.category-card{
+  border-radius:5px ;
+
+}
+.category-img{
+  border-radius: 5px;
+}
+.category-link{
+  text-decoration: none;
+  color: black;
+}
+.category-card-body{
+margin: 0;
+padding: 0;
+}
 
 /* Footer */
 .f-info {

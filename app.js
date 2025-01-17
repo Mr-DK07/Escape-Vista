@@ -35,8 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-const dbUrl = process.env.ATLASDB_URL;
-// const MONGO_URL = "mongodb://127.0.0.1:27017/ESCAPE_VISTA";
+// const dbUrl = process.env.ATLASDB_URL;
+const MONGO_URL = "mongodb://127.0.0.1:27017/ESCAPE_VISTA";
 main()
   .then(() => {
     console.log("connected to db");
@@ -46,26 +46,26 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(MONGO_URL);
   console.log("connected to mongo atlas"); 
 }
 
 // Mongo session
-const store = MongoStore.create({
-	mongoUrl: dbUrl,
-	crypto: {
-		secret: process.env.SECRET,
-	},
-	touchAfter: 24 * 3600,
-});
+// const store = MongoStore.create({
+// 	mongoUrl: dbUrl,
+// 	crypto: {
+// 		secret: process.env.SECRET,
+// 	},
+// 	touchAfter: 24 * 3600,
+// });
 
-store.on("error", () => {
-	console.log("ERROR in MONGO SESSION STORE", err);
-});
+// store.on("error", () => {
+// 	console.log("ERROR in MONGO SESSION STORE", err);
+// });
 
 // local session
 const sessionOptions = {
-  store,
+  // store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
