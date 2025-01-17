@@ -11,7 +11,7 @@ body {
 /* navbar */
 .navbar {
   height: 5rem;
-  background-color:rgb(97, 97, 97);
+  background: rgb(155, 155, 155);
 }
 .logo-icon {
   color: #fe424d;
