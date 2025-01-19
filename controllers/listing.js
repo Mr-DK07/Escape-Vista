@@ -104,17 +104,5 @@ module.exports.filterListing = async (req, res) => {
     );
     return res.redirect("/listings/new");
   }
-  res.render("listings/category", { category, listings });
-};
-
-module.exports.searchListing = async (req, res) => {
-  const { query } = req.query; // Get the search query from the URL parameter
-  let filter = {};
-
-  if (query) {
-    filter.title = { $regex: query, $options: "i" }; // Case-insensitive search
-  }
-  const listing = await Listing.find(filter);
-  res.render("listings/search.ejs", { listing, query });
-  req.flash("error", "Something went wrong. Please try again!");
+  res.render("./listings/category.ejs", { category, listings });
 };

@@ -47,21 +47,20 @@ main()
 
 async function main() {
   await mongoose.connect(dbUrl);
-  console.log("connected to mongo atlas");
 }
 
 // Mongo session
 
 const store = MongoStore.create({
-  mongoUrl: dbUrl,
-  crypto: {
-    secret: process.env.SECRET,
-  },
-  touchAfter: 24 * 3600,
+	mongoUrl: dbUrl,
+	crypto: {
+		secret: process.env.SECRET,
+	},
+	touchAfter: 24 * 3600,
 });
 
 store.on("error", () => {
-  console.log("ERROR in MONGO SESSION STORE", err);
+	console.log("ERROR in MONGO SESSION STORE", err);
 });
 
 // local session
@@ -76,6 +75,7 @@ const sessionOptions = {
     httpOnly: true,
   },
 };
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -99,6 +99,31 @@ app.use((req, res, next) => {
 //   res.render("index.ejs");
 // });
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, '\\$&');
+}
+
+app.get("/listings/search", async (req, res) => {
+  const { query } = req.query; // Get the search query from the URL parameter
+
+  try {
+    let filter = {};
+    if (query) {
+      const sanitizedQuery = escapeRegExp(query); // Sanitize the query string
+      filter.title = { $regex: sanitizedQuery, $options: "i" }; // Case-insensitive search
+    }
+
+    const listings = await Listing.find(filter);
+
+    res.render("listings/search.ejs", { listings, query });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Something went wrong. Please try again.");
+    res.redirect("/");
+  }
+});
+
+
 // listings routes
 app.use("/listings", listingRouter);
 
@@ -108,8 +133,9 @@ app.use("/listings/:id/reviews", reviewRouter);
 // User routes
 app.use("/", userRouter);
 
+
 //Search
-app.get("/listings/search");
+app.get("/listings/search",);
 
 // Page not found
 app.all("*", (req, res, next) => {

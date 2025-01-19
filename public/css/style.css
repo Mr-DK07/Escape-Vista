@@ -13,6 +13,7 @@ body {
   height: 6rem;
   background: rgb(237, 234, 234);
 }
+
 .brand-name {
   font-size: 2rem;
   font-weight: 700;
@@ -148,9 +149,18 @@ input::placeholder {
 }
 
 /* show page */
+.show-card {
+  border: none !important;
+  margin-bottom: 2rem;
+  transition: all 0.3s;
+}
 .show-img {
   max-height: 50vh;
   border-radius: 5px;
+}
+.show-card:hover {
+  scale: 1.04;
+
 }
 .show-card-body p {
   margin: 0;
@@ -178,6 +188,12 @@ input::placeholder {
   margin: 0;
   padding: 0;
 }
+
+/* search page */
+.search-card-link{
+  text-decoration: none;
+}
+
 
 /* Footer */
 .f-info {

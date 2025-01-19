@@ -83,9 +83,9 @@
         </div>
 
         <h3 class=" text-danger mb-4 mt-2">The Ultimate Travel Destination Booking Website</h3>
-        <div class="row">
+        <div class="row row-cols-lg-3 row-cols-md-2">
             <% for(let listing of allListings) { %>
-                <div class="card listing-card cols-md-3 mx-auto" style="width: 23rem;">
+                <div class="card listing-card mx-auto" style="width: 22rem;">
                     <a class="show-links" href="/listings/<%= listing._id %>">
                         <img src="<%= listing.image.url %>" class="list-card-img list-card-img-top" alt="img..">
                         <div class="card-img-overlay"></div>

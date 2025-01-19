@@ -45,6 +45,6 @@ router.get(
 router.get("/category/:category", wrapAsync(listingControllers.filterListing));
 
 // Search Listing
-router.get("/search", wrapAsync(listingControllers.searchListing));
+// router.get("/search", wrapAsync(listingControllers.searchListing));
 
 module.exports = router;
