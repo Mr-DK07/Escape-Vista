@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "22"
+    "node": "22.13.0"
   },
   "name": "escape-vista",
   "version": "1.0.0",
