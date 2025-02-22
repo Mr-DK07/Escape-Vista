@@ -1,20 +1,20 @@
 <% layout("/layouts/boilerplate") %>
     <script>
         const mapToken = "<%= process.env.MAP_TOKEN %>";
-        const listing = <%- JSON.stringify(listing) %>;
+        const listing = <% - JSON.stringify(listing) %>;
 
     </script>
 
     <body>
-        <div class="row">
-            <div class="col-8 offset-3">
+        <div class="row my-4 mx-auto justify-content-center">
+            <div class="col-12 col-sm-8 offset-sm-2">
                 <h3>
                     <%= listing.title %>
                 </h3>
             </div>
         </div>
-        <div class="row">
-            <div class="card show-card col-6 offset-3">
+        <div class="row my-4 mx-auto justify-content-center">
+            <div class="card show-card col-12 col-sm-8 offset-sm-2">
                 <img src="<%= listing.image.url %>" class="show-img card-img-top" alt="img..">
                 <div class="show-card-body mt-2">
                     <p class="mb-2">Owned by: <b>
@@ -25,7 +25,7 @@
                     </p>
                     <p class="my-2"><b>&#8377; </b>
                         <%= listing.price.toLocaleString("en-IN") %> /night
-                        <b class="tax-info">+ 18% GST</b>
+                            <b class="tax-info">+ 18% GST</b>
                     </p>
                     <p> <i class="fa-solid fa-location-dot"> </i>
                         <%= listing.location %>, <%= listing.country %>
@@ -43,13 +43,13 @@
                     <% } %>
             </div>
         </div>
-    
+
 
         <!-- review form -->
 
         <% if (currUser) { %>
-            <div class="row">
-                <div class="col-6 offset-3">
+            <div class="row offset-sm-3">
+                <div class="col-12 col-sm-6">
                     <h5><b><u>Leave a Review</u></b></h5>
                     <form action="/listings/<%= listing.id %>/reviews" method="POST" class="needs-validation"
                         novalidate>
@@ -85,8 +85,8 @@
 
                 <!-- Show all reviews -->
                 <% if (listing.reviews.length> 0) { %>
-                    <div class="row mt-4">
-                        <div class="col-8 offset-3">
+                    <div class="row mt-4 offset-sm-3">
+                        <div class="col-12 col-sm-6">
                             <p><b><u>All Reviews</u></b></p>
                             <div class="row ">
                                 <% for(review of listing.reviews) { %>
@@ -124,12 +124,12 @@
                         </div>
                     </div>
                     <% } %>
-                        <hr>
+        <hr>
 
-                        <!-- Map -->
-                        <div class="col-6 offset-3 my-3">
-                            <h3>Where you will be!</h3>
-                            <div id="map"></div>
-                        </div>
-                        <script src="/js/map.js"></script>
+        <!-- Map -->
+        <div class="my-4 col-12 col-sm-6 offset-sm-3">
+            <h3>Where you will be!</h3>
+            <div id="map"></div>
+        </div>
+        <script src="/js/map.js"></script>
     </body>
