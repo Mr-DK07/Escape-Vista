@@ -10,8 +10,8 @@ body {
 
 /* navbar */
 .navbar {
-  height: 6rem;
-  background: rgb(237, 234, 234);
+  min-height: 6rem;
+  background: #edeaea;
 }
 
 .brand-name {
@@ -26,6 +26,7 @@ body {
 }
 .nav-links {
   color: #222222 !important;
+  background: #edeaea;
 }
 
 /* search box */
