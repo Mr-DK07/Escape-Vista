@@ -46,13 +46,13 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(dbUrl); //MONGO_URL
 }
 
 // Mongo session
 
 const store = MongoStore.create({
-	mongoUrl: dbUrl,
+	mongoUrl: dbUrl, //MONGO_URL
 	crypto: {
 		secret: process.env.SECRET,
 	},
