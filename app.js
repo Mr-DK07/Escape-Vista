@@ -37,6 +37,8 @@ app.use(methodOverride("_method"));
 
 const dbUrl = process.env.ATLASDB_URL;
 // const MONGO_URL = "mongodb://127.0.0.1:27017/ESCAPE_VISTA";
+
+// console.log("dburl",dbUrl);
 main()
   .then(() => {
     console.log("connected to db");
@@ -59,7 +61,7 @@ const store = MongoStore.create({
 	touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
+store.on("error", (err) => {
 	console.log("ERROR in MONGO SESSION STORE", err);
 });
 
